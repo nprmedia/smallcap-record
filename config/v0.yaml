@@ -1,0 +1,83 @@
+# config v0 — pre-registered July 2026. Changes require config_version bump + memo + 12m shadow-track (METHODOLOGY.md §9).
+
+universe:
+  security_type: US common stock
+  exchanges: [NYSE, NASDAQ]
+  market_cap_usd: {min: 300e6, max: 3e9}
+  adv_3m_median_usd_min: 1e6
+  exclude_sectors: [financials, reits]
+  exclude_other: [pre_revenue_biotech, foreign_private_issuers, limited_partnerships]
+  min_months_since_listing_or_combination: 13
+  min_quarters_filed: 4
+  share_classes_per_issuer: 1   # most liquid retained
+  utilities: retained            # handled by within-sector ranking
+
+gates:                           # order matters; EBIT>0 first makes leverage gate well-defined
+  ebit_ttm_positive: true
+  net_debt_to_ebitda_max: 3.0    # lender convention, disclosed
+  exclude_announced_targets: true
+  momentum_12_1_min_universe_percentile: 10
+
+ranks:                           # within-GICS-sector percentiles, equal-weighted
+  factors:
+    - {name: cbop_a, direction: high_is_good, accruals_method: cash_flow_statement}
+    - {name: ebit_ev, direction: high_is_good}   # EBIT variant reasoned not horse-race-evidenced, disclosed
+    - {name: asset_growth_yoy, direction: low_is_good}
+  weights: equal                 # 1/3 each; no principled derivation exists
+  sector_scheme: gics_sector
+
+observation_layer:               # raw continuous values, universe-wide; destinations pre-committed
+  signals:
+    - {name: n_insider_buyers_90d, destination: rank, plan_trades_excluded: true}
+    - {name: insider_net_buy_usd_90d, destination: rank, plan_trades_excluded: true}
+    - {name: si_pct_float, destination: gate}
+    - {name: days_to_cover, destination: gate}
+    - {name: net_payout_yield_ttm, destination: rank}
+    - {name: sue_srw, destination: rank, nulls_until_computable: true}
+    - {name: lm_neg_share, destination: gate, include_qoq_delta: true}
+    - {name: hiring_velocity_qoq, destination: rank, vertical_only: true}
+  primary_cluster_test: {min_distinct_buyers: 2, min_aggregate_usd: 100e3, window_days: 90, roles: [officer, director], plan_trades: excluded}
+
+data:
+  source_primary: {vendor: sharadar_sfa_bundle, dimension: as_reported, budget_ceiling_usd_month: 100}
+  source_fallback: {fundamentals: edgar_xbrl, prices: tiingo}
+  benchmark_series: {ticker: IJR, adjustment: dividend_adjusted, drag_bps_yr: ~6, proxies: SP600}
+  identity: [figi, cik, ticker, config_version]
+  row_key: [figi, run_date]
+  schema_policy: append_only
+  publication: {full_csv: local_hash_stamped, public_csv: redacted_derived_fields_only}
+
+corporate_actions:
+  acquisition_any_consideration: value_at_close_then_benchmark_roll_to_horizon
+  delist_for_cause: final_observable_value_else_minus_100pct_disclosed
+  spinoff: combined_entity_as_if_held
+  halt: last_trade_stale_flagged
+
+success_metric:
+  horizon_primary_months: 12
+  horizon_recorded_months: 6
+  managed_exits: false
+  benchmark: SP600_via_IJR
+  hit_definition: excess_12m_gt_0
+  preregistered_stats: [hit_rate, slugging, mean_excess, median_excess]
+  risk_adjustment: none
+  scope_notes: [breadth_caveat, non_gips]
+
+graduation:
+  window_type: non_overlapping_12m
+  fast_track: {signals: [insider, short_interest, net_payout], windows_required: 2, sign_agreement: all, chance_rate_disclosed: 0.25}
+  slow_track: {signals: [sue, tone, hiring_velocity], windows_required: 4, sign_agreement: all, chance_rate_disclosed: 0.0625, pooled_materiality_required: true}
+  event_signals_min_flagged_names_cumulative: 100
+  primary_test_ranks: sector_neutral_q5_minus_q1_excess_sign
+  primary_test_gates: flagged_cohort_mean_excess_sign
+  supplementary_only: [pooled_spearman_ic, overlap_corrected_stats]
+  external_leg: {corpus: chen_zimmermann, alt: two_independent_tier1_3_studies, recency_condition: no_documented_decay_study}
+  demotion_triggers: [mechanism_break, data_integrity_failure]   # never trailing performance
+  review: {frequency: annual, scope: all_six_jointly, familywise_disclosed: true}
+
+cadence:
+  run_dates: [03-20, 05-20, 08-20, 11-20]   # next business day roll
+  interim_rows: false
+  picks: {n: 5, selection: top_composite_among_gate_passers, override: none, shortfall: all_passers_disclosed}
+  tie_break: [cbop_sector_percentile_desc, figi_lexicographic]
+  staleness_days_logged: true
