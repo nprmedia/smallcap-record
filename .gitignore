@@ -1,2 +1,6 @@
 runs/**/full_*.csv
 .env
+data_cache/
+__pycache__/
+*.pyc
+*.ots.bak

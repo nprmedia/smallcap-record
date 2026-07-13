@@ -1,0 +1,54 @@
+# Operational plumbing ONLY — API endpoints, rate limits, and the free-backend
+# sample ticker list used for pipeline testing before the Sharadar subscription.
+# No methodology parameter lives here. All pre-registered parameters are in
+# config/v0.yaml and change only via the METHODOLOGY.md §9 protocol.
+# This file may be edited freely without a config_version bump.
+
+free:
+  # Hand-curated small/mid caps for testing the pipeline end-to-end.
+  # GICS sector is hand-assigned (free sources carry no GICS license);
+  # exclusion flags (FPI / LP / REIT) are hand-curated for this list.
+  # Deliberately includes names likely to fail filters/gates (cap band,
+  # leverage, sector exclusion) so every code path gets exercised.
+  sample_universe:
+    - {ticker: ROCK, sector: Industrials}
+    - {ticker: ALG,  sector: Industrials}
+    - {ticker: HNI,  sector: Industrials}
+    - {ticker: MYRG, sector: Industrials}
+    - {ticker: SHOO, sector: Consumer Discretionary}
+    - {ticker: WGO,  sector: Consumer Discretionary}
+    - {ticker: PRDO, sector: Consumer Discretionary}
+    - {ticker: OXM,  sector: Consumer Discretionary}
+    - {ticker: PLAB, sector: Information Technology}
+    - {ticker: DIOD, sector: Information Technology}
+    - {ticker: VECO, sector: Information Technology}
+    - {ticker: KALU, sector: Materials}
+    - {ticker: MTRN, sector: Materials}
+    - {ticker: HWKN, sector: Materials}
+    - {ticker: SUPN, sector: Health Care}
+    - {ticker: HRMY, sector: Health Care}
+    - {ticker: HP,   sector: Energy}
+    - {ticker: ANDE, sector: Consumer Staples}
+    - {ticker: CALM, sector: Consumer Staples}
+    - {ticker: AWR,  sector: Utilities}          # utilities retained per config
+    - {ticker: CASH, sector: Financials}         # here to test the financials exclusion
+  edgar:
+    tickers_url: https://www.sec.gov/files/company_tickers_exchange.json
+    companyfacts_url: https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json
+    submissions_url: https://data.sec.gov/submissions/CIK{cik:010d}.json
+    archives_url: https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/{doc}
+    max_requests_per_sec: 6
+  tiingo:
+    prices_url: https://api.tiingo.com/tiingo/daily/{ticker}/prices
+  openfigi:
+    mapping_url: https://api.openfigi.com/v3/mapping
+    batch_size: 5            # keyless rate limits are tight; stay conservative
+
+sharadar:
+  base_url: https://data.nasdaq.com/api/v3/datatables
+  # Field names below are written against Sharadar documentation but are
+  # UNVERIFIED until the subscription starts (~Aug 2026). Verify then.
+
+cache:
+  dir: data_cache            # gitignored; raw API responses, 24h TTL
+  ttl_hours: 24
