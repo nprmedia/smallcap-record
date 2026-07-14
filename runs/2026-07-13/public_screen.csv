@@ -1,0 +1,13 @@
+figi,run_date,cik,ticker,company_name,exchange,sector,config_version,data_backend,run_kind,staleness_days,rank_cbop_a_sector_pctile,rank_ebit_ev_sector_pctile,rank_neg_asset_growth_sector_pctile,composite,pick,pick_rank,pick_shortfall,excess_6m,excess_12m,hit_12m,return_basis
+BBG001S5TZF0,2026-07-13,75288,OXM,OXFORD INDUSTRIES INC,NYSE,Consumer Discretionary,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,72,,,,,False,,False,,,,
+BBG001S6M491,2026-07-13,1046568,PRDO,PERDOCEO EDUCATION Corp,NASDAQ,Consumer Discretionary,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,104,1.0,1.0,1.0,1.0,True,2,False,,,,
+BBG001S5XFG8,2026-07-13,107687,WGO,WINNEBAGO INDUSTRIES INC,NYSE,Consumer Discretionary,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,44,,,,,False,,False,,,,
+BBG001S60FJ9,2026-07-13,821026,ANDE,"Andersons, Inc.",NASDAQ,Consumer Staples,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,104,,,,,False,,False,,,,
+BBG00WBPG548,2026-07-13,1802665,HRMY,"Harmony Biosciences Holdings, Inc.",NASDAQ,Health Care,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,104,1.0,1.0,1.0,1.0,True,4,False,,,,
+BBG001SFKFF1,2026-07-13,1356576,SUPN,"SUPERNUS PHARMACEUTICALS, INC.",NASDAQ,Health Care,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,104,,,,,False,,False,,,,
+BBG001S7YVC2,2026-07-13,897077,ALG,ALAMO GROUP INC,NYSE,Industrials,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,104,1.0,1.0,1.0,1.0,True,3,False,,,,
+BBG001S6Q6F5,2026-07-13,48287,HNI,HNI CORP,NYSE,Industrials,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,100,,,,,False,,False,,,,
+BBG001S7GCL4,2026-07-13,912562,ROCK,"GIBRALTAR INDUSTRIES, INC.",NASDAQ,Industrials,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,104,,,,,False,,False,,,,
+BBG001S5V7C2,2026-07-13,810136,PLAB,PHOTRONICS INC,NASDAQ,Information Technology,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,71,1.0,1.0,1.0,1.0,True,1,False,,,,
+BBG001S5S282,2026-07-13,46250,HWKN,HAWKINS INC,NASDAQ,Materials,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,106,1.0,0.5,0.5,0.6666666666666666,False,,False,,,,
+BBG001SR3GT7,2026-07-13,811596,KALU,KAISER ALUMINUM CORP,NASDAQ,Materials,9e9dc00bae5658ad0babd0d8ad4b401ade0089a7,free,test,104,0.5,1.0,1.0,0.8333333333333334,True,5,False,,,,

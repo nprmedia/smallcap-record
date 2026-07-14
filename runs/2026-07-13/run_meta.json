@@ -1,0 +1,28 @@
+{
+  "run_date": "2026-07-13",
+  "run_kind": "test",
+  "config_version": "9e9dc00bae5658ad0babd0d8ad4b401ade0089a7",
+  "data_backend": "free",
+  "counts": {
+    "candidates": 21,
+    "universe": 12,
+    "gate_passers": 6,
+    "composite_null_among_passers": 0,
+    "picks": 5
+  },
+  "pick_shortfall": false,
+  "benchmark_level_ijr_adj": 144.99,
+  "figi_placeholders": [],
+  "backend_disclosures": [
+    "short interest, call tone, and hiring velocity have no free source -> null",
+    "GICS sectors hand-assigned in config/backends.yaml (no free GICS license)",
+    "announced_target is an EDGAR merger-proxy/tender-form heuristic, not a deal feed",
+    "months_since_listing proxied from earliest EDGAR filing date",
+    "total debt = sum of reported XBRL debt tags (filer tag variance possible)"
+  ],
+  "artifacts": {
+    "full_screen_csv_sha256": "7fbcca0bf3b5d4b563b273b933d01f73daba6a57d810ac29ce81dcc1bfca684e",
+    "full_universe_log_csv_sha256": "645335be0f627bcfc43d8156eaa40b5e0d3865a2e798b4cbeeb8ecff7c337efd",
+    "public_screen_csv_sha256": "448864f39e85689fe2b0dcdd1b72f8afa69d75fcef354b67d1225de8ea3aad65"
+  }
+}
