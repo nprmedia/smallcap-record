@@ -1,0 +1,11 @@
+figi,run_date,cik,ticker,company_name,exchange,sector,config_version,data_backend,run_kind,staleness_days,rank_cbop_a_sector_pctile,rank_ebit_ev_sector_pctile,rank_neg_asset_growth_sector_pctile,composite,pick,pick_rank,pick_shortfall,excess_6m,excess_12m,hit_12m,return_basis
+BBG001S5TZF0,2026-07-18,75288,OXM,OXFORD INDUSTRIES INC,NYSE,Consumer Discretionary,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,77,,,,,False,,False,,,,
+BBG001S6M491,2026-07-18,1046568,PRDO,PERDOCEO EDUCATION Corp,NASDAQ,Consumer Discretionary,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,109,1.0,1.0,1.0,1.0,True,2,False,,,,
+BBG001S5XFG8,2026-07-18,107687,WGO,WINNEBAGO INDUSTRIES INC,NYSE,Consumer Discretionary,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,49,,,,,False,,False,,,,
+BBG001S60FJ9,2026-07-18,821026,ANDE,"Andersons, Inc.",NASDAQ,Consumer Staples,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,109,,,,,False,,False,,,,
+BBG00WBPG548,2026-07-18,1802665,HRMY,"Harmony Biosciences Holdings, Inc.",NASDAQ,Health Care,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,109,1.0,1.0,1.0,1.0,True,5,False,,,,
+BBG001SFKFF1,2026-07-18,1356576,SUPN,"SUPERNUS PHARMACEUTICALS, INC.",NASDAQ,Health Care,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,109,,,,,False,,False,,,,
+BBG001S7YVC2,2026-07-18,897077,ALG,ALAMO GROUP INC,NYSE,Industrials,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,109,1.0,1.0,1.0,1.0,True,3,False,,,,
+BBG001S7GCL4,2026-07-18,912562,ROCK,"GIBRALTAR INDUSTRIES, INC.",NASDAQ,Industrials,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,109,,,,,False,,False,,,,
+BBG001S5V7C2,2026-07-18,810136,PLAB,PHOTRONICS INC,NASDAQ,Information Technology,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,76,1.0,1.0,1.0,1.0,True,1,False,,,,
+BBG001SR3GT7,2026-07-18,811596,KALU,KAISER ALUMINUM CORP,NASDAQ,Materials,29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty,free,test,109,1.0,1.0,1.0,1.0,True,4,False,,,,
