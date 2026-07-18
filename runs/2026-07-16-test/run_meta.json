@@ -1,0 +1,36 @@
+{
+  "run_date": "2026-07-16",
+  "run_kind": "test",
+  "config_version": "8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9",
+  "data_backend": "free",
+  "counts": {
+    "candidates": 21,
+    "universe": 11,
+    "gate_passers": 5,
+    "composite_null_among_passers": 0,
+    "picks": 5
+  },
+  "pick_shortfall": false,
+  "benchmark_level_ijr_adj": 147.16,
+  "figi_placeholders": [],
+  "backend_disclosures": [
+    "call tone and hiring velocity have no free source -> null",
+    "GICS sectors hand-assigned in config/backends.yaml (no free GICS license)",
+    "announced_target is an EDGAR merger-proxy/tender-form heuristic, not a deal feed",
+    "months_since_listing proxied from earliest EDGAR filing date",
+    "total debt = sum of reported XBRL debt tags (filer tag variance possible)",
+    "si_pct_float denominator is SHARES OUTSTANDING (free float unavailable from free sources) \u2014 disclosed deviation, applied uniformly",
+    "days_to_cover = FINRA short interest / 3-month median daily share volume (universe ADV convention), not FINRA's own average-volume field"
+  ],
+  "short_interest": {
+    "source": "FINRA consolidated short interest",
+    "settlement_date": "2026-06-30",
+    "si_pct_float_denominator": "shares_outstanding",
+    "names_matched": 21
+  },
+  "artifacts": {
+    "full_screen_csv_sha256": "8ad0625f89e263f7bbda31fcc53c29eeaf20ab7d970d2e40c478466e1d6012d6",
+    "full_universe_log_csv_sha256": "576467db9e1470dd83abddd4790a7176a53ea6b53aa13b8bfd3a485bc1d12c62",
+    "public_screen_csv_sha256": "185dcda16fdc87e24be9c2ebb2a2d21f66ae5e0010a18c4b59e4797b428799cd"
+  }
+}

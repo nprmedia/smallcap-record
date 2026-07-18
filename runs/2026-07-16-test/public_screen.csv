@@ -1,0 +1,12 @@
+figi,run_date,cik,ticker,company_name,exchange,sector,config_version,data_backend,run_kind,staleness_days,rank_cbop_a_sector_pctile,rank_ebit_ev_sector_pctile,rank_neg_asset_growth_sector_pctile,composite,pick,pick_rank,pick_shortfall,excess_6m,excess_12m,hit_12m,return_basis
+BBG001S5TZF0,2026-07-16,75288,OXM,OXFORD INDUSTRIES INC,NYSE,Consumer Discretionary,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,75,,,,,False,,False,,,,
+BBG001S6M491,2026-07-16,1046568,PRDO,PERDOCEO EDUCATION Corp,NASDAQ,Consumer Discretionary,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,107,1.0,1.0,1.0,1.0,True,2,False,,,,
+BBG001S5XFG8,2026-07-16,107687,WGO,WINNEBAGO INDUSTRIES INC,NYSE,Consumer Discretionary,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,47,,,,,False,,False,,,,
+BBG001S60FJ9,2026-07-16,821026,ANDE,"Andersons, Inc.",NASDAQ,Consumer Staples,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,107,,,,,False,,False,,,,
+BBG00WBPG548,2026-07-16,1802665,HRMY,"Harmony Biosciences Holdings, Inc.",NASDAQ,Health Care,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,107,1.0,1.0,1.0,1.0,True,3,False,,,,
+BBG001SFKFF1,2026-07-16,1356576,SUPN,"SUPERNUS PHARMACEUTICALS, INC.",NASDAQ,Health Care,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,107,,,,,False,,False,,,,
+BBG001S7YVC2,2026-07-16,897077,ALG,ALAMO GROUP INC,NYSE,Industrials,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,107,,,,,False,,False,,,,
+BBG001S7GCL4,2026-07-16,912562,ROCK,"GIBRALTAR INDUSTRIES, INC.",NASDAQ,Industrials,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,107,,,,,False,,False,,,,
+BBG001S5V7C2,2026-07-16,810136,PLAB,PHOTRONICS INC,NASDAQ,Information Technology,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,74,1.0,1.0,1.0,1.0,True,1,False,,,,
+BBG001S5S282,2026-07-16,46250,HWKN,HAWKINS INC,NASDAQ,Materials,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,109,1.0,0.5,0.5,0.6666666666666666,True,5,False,,,,
+BBG001SR3GT7,2026-07-16,811596,KALU,KAISER ALUMINUM CORP,NASDAQ,Materials,8fc1aca9b104f7164ed2ab1b97560a4dfa9a68e9,free,test,107,0.5,1.0,1.0,0.8333333333333334,True,4,False,,,,
