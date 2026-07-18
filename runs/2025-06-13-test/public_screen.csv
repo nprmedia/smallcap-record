@@ -1,0 +1,6 @@
+figi,run_date,cik,ticker,company_name,exchange,sector,config_version,data_backend,run_kind,staleness_days,rank_cbop_a_sector_pctile,rank_ebit_ev_sector_pctile,rank_neg_asset_growth_sector_pctile,composite,pick,pick_rank,pick_shortfall,excess_6m,excess_12m,hit_12m,return_basis
+BBG001S7JHQ5,2025-06-13,913241,SHOO,STEVEN MADDEN LTD,NASDAQ,Consumer Discretionary,FABRICATED-FIXTURE,fabricated,test,45,0.95,0.95,0.95,0.95,True,1.0,False,,,,
+BBG001S5V7C2,2025-06-13,810136,PLAB,PHOTRONICS INC,NASDAQ,Information Technology,FABRICATED-FIXTURE,fabricated,test,45,0.9,0.9,0.9,0.9,True,2.0,False,,,,
+BBG001SR3GT7,2025-06-13,811596,KALU,KAISER ALUMINUM CORP,NASDAQ,Materials,FABRICATED-FIXTURE,fabricated,test,45,0.85,0.85,0.85,0.85,True,3.0,False,,,,
+BBG001S5XFG8,2025-06-13,107687,WGO,WINNEBAGO INDUSTRIES INC,NYSE,Consumer Discretionary,FABRICATED-FIXTURE,fabricated,test,45,0.4,0.4,0.4,0.4,False,,False,,,,
+BBG001S9T5Z6,2025-06-13,1056903,AWR,AMERICAN STATES WATER CO,NYSE,Utilities,FABRICATED-FIXTURE,fabricated,test,45,0.3,0.3,0.3,0.3,False,,False,,,,

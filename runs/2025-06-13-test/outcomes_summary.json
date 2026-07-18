@@ -1,0 +1,20 @@
+{
+  "run_date": "2025-06-13",
+  "scored_on": "2026-07-18",
+  "outcome_config_version": "29af5c92dd77e224c0e7a8137093ae2ec275ef08-dirty",
+  "horizons": {
+    "6m": {
+      "n_picks_scored": 3,
+      "slugging": null,
+      "mean_excess": 0.602402672130044,
+      "median_excess": 0.7309206926760055
+    },
+    "12m": {
+      "n_picks_scored": 3,
+      "hit_rate": 1.0,
+      "slugging": null,
+      "mean_excess": 0.746638987791265,
+      "median_excess": 0.6797862158366459
+    }
+  }
+}

@@ -3,7 +3,9 @@ over the hand-curated sample universe in config/backends.yaml.
 
 This backend exists to exercise the pipeline before the Sharadar
 subscription starts (Aug 2026). Its known gaps — all disclosed per run:
-- short interest, call tone, hiring velocity: no free source -> null
+- call tone, hiring velocity: no free source -> null
+- short interest via FINRA, but si_pct_float uses shares outstanding
+  (free float unavailable) — disclosed denominator deviation
 - GICS sector: hand-assigned in backends.yaml (no free GICS license)
 - FPI / LP / common-stock flags: hand-curated for the sample list
 - announced_target: EDGAR filing-forms heuristic, not a deal feed
