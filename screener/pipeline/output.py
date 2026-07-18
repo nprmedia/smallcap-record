@@ -20,8 +20,11 @@ from ..config import ROOT
 from ..schema import FULL_COLUMNS, PUBLIC_COLUMNS
 
 
-def run_dir(run_date: dt.date) -> pathlib.Path:
-    d = ROOT / "runs" / run_date.isoformat()
+def run_dir(run_date: dt.date, run_kind: str) -> pathlib.Path:
+    # test runs are fenced from the official record by a -test folder suffix
+    # (see README): infrastructure validation only, never track-record material
+    suffix = "-test" if run_kind == "test" else ""
+    d = ROOT / "runs" / (run_date.isoformat() + suffix)
     d.mkdir(parents=True, exist_ok=True)
     return d
 
@@ -52,7 +55,7 @@ def sha256_of(path: pathlib.Path) -> str:
 
 def write_run(full: pd.DataFrame, exclusion_log: pd.DataFrame,
               run_date: dt.date, meta: dict) -> dict:
-    d = run_dir(run_date)
+    d = run_dir(run_date, meta["run_kind"])
 
     full_path = d / "full_screen.csv"
     full.to_csv(full_path, index=False)

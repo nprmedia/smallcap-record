@@ -115,7 +115,7 @@ def main() -> None:
               f"composite={p['composite']:.3f}")
     print(f"\nwrote:\n  {paths['full']}  (LOCAL ONLY)\n  {paths['log']}  (LOCAL ONLY)"
           f"\n  {paths['public']}\n  {paths['meta']}")
-    print("next: python scripts/stamp_run.py runs/" + as_of.isoformat())
+    print("next: python scripts/stamp_run.py runs/" + paths["dir"].name)
 
 
 if __name__ == "__main__":
