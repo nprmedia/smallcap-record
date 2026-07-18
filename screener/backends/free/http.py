@@ -25,6 +25,7 @@ class CachedSession:
         self.min_interval = 1.0 / max_per_sec
         self._last_request = 0.0
         self.session = requests.Session()
+        self.session.headers["Accept"] = "application/json"  # FINRA defaults to text
         if user_agent:
             self.session.headers["User-Agent"] = user_agent
 

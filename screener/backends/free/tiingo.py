@@ -44,7 +44,8 @@ class Tiingo:
         return [r for r in rows if r.get("date", "")[:10] <= as_of.isoformat()]
 
     def metrics(self, ticker: str, as_of: dt.date) -> dict:
-        out = {"price": None, "mom_12_1": None, "adv_3m_median_usd": None}
+        out = {"price": None, "mom_12_1": None, "adv_3m_median_usd": None,
+               "volume_3m_median_shares": None}
         rows = self.history(ticker, as_of)
         if not rows:
             return out
@@ -59,13 +60,23 @@ class Tiingo:
 
         recent = rows[-TRADING_DAYS_3M:]
         if len(recent) >= TRADING_DAYS_3M // 2:
-            dollar = sorted(float(r["close"]) * float(r["volume"]) for r in recent)
-            mid = len(dollar) // 2
-            out["adv_3m_median_usd"] = (
-                dollar[mid] if len(dollar) % 2 else (dollar[mid - 1] + dollar[mid]) / 2)
+            out["adv_3m_median_usd"] = _median(
+                float(r["close"]) * float(r["volume"]) for r in recent)
+            # share-volume median, same window/convention as the ADV filter;
+            # used as the days-to-cover denominator
+            out["volume_3m_median_shares"] = _median(
+                float(r["volume"]) for r in recent)
         return out
 
     def level(self, ticker: str, as_of: dt.date) -> float | None:
         """Latest dividend-adjusted close on or before as_of (benchmark use)."""
         rows = self.history(ticker, as_of)
         return float(rows[-1]["adjClose"]) if rows else None
+
+
+def _median(values) -> float | None:
+    ordered = sorted(values)
+    if not ordered:
+        return None
+    mid = len(ordered) // 2
+    return ordered[mid] if len(ordered) % 2 else (ordered[mid - 1] + ordered[mid]) / 2

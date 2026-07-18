@@ -43,6 +43,9 @@ free:
   openfigi:
     mapping_url: https://api.openfigi.com/v3/mapping
     batch_size: 5            # keyless rate limits are tight; stay conservative
+  finra:
+    data_url: https://api.finra.org/data/group/otcMarket/name/consolidatedShortInterest
+    partitions_url: https://api.finra.org/partitions/group/otcMarket/name/consolidatedShortInterest
 
 sharadar:
   base_url: https://data.nasdaq.com/api/v3/datatables

@@ -17,10 +17,9 @@ import pandas as pd
 from ..base import Backend
 from .edgar import Edgar
 from .figi import map_figis
+from .finra import Finra
 from .http import CachedSession, edgar_user_agent
 from .tiingo import Tiingo
-
-INSIDER_WINDOW_DAYS = 90  # from the pre-registered field definitions (§4)
 
 
 class FreeBackend(Backend):
@@ -36,10 +35,14 @@ class FreeBackend(Backend):
         plain_session = CachedSession(cache_cfg, user_agent="smallcap-record/0.1")
         self.edgar = Edgar(edgar_session, self.cfg["edgar"])
         self.tiingo = Tiingo(plain_session, self.cfg["tiingo"])
+        self.finra = Finra(plain_session, self.cfg["finra"])
         self.openfigi_session = plain_session
         # the primary insider test's window is pre-registered in v0.yaml
         window = v0["observation_layer"]["primary_cluster_test"]["window_days"]
         self.insider_window = int(float(window))
+        # per-run disclosures and meta notes, consumed by run.py into run_meta
+        self.disclosures: list[str] = []
+        self.extra_meta: dict = {}
 
     def fetch(self, as_of: dt.date) -> pd.DataFrame:
         sample = self.cfg["sample_universe"]
@@ -48,6 +51,27 @@ class FreeBackend(Backend):
 
         directory = self.edgar.ticker_directory()
         figis = map_figis(self.openfigi_session, self.cfg["openfigi"], tickers)
+        short_interest, si_settlement = self.finra.short_interest(tickers, as_of)
+
+        self.disclosures = [
+            "call tone and hiring velocity have no free source -> null",
+            "GICS sectors hand-assigned in config/backends.yaml (no free GICS license)",
+            "announced_target is an EDGAR merger-proxy/tender-form heuristic, not a deal feed",
+            "months_since_listing proxied from earliest EDGAR filing date",
+            "total debt = sum of reported XBRL debt tags (filer tag variance possible)",
+            "si_pct_float denominator is SHARES OUTSTANDING (free float unavailable "
+            "from free sources) — disclosed deviation, applied uniformly",
+            "days_to_cover = FINRA short interest / 3-month median daily share "
+            "volume (universe ADV convention), not FINRA's own average-volume field",
+        ]
+        self.extra_meta = {
+            "short_interest": {
+                "source": "FINRA consolidated short interest",
+                "settlement_date": si_settlement.isoformat() if si_settlement else None,
+                "si_pct_float_denominator": "shares_outstanding",
+                "names_matched": len(short_interest),
+            }
+        }
 
         rows = []
         for ticker in tickers:
@@ -65,9 +89,7 @@ class FreeBackend(Backend):
                 "is_fpi": False,
                 "is_lp": False,
                 "is_reit": sectors[ticker] == "Real Estate",
-                # no free source for these three observation signals:
-                "obs_si_pct_float": None,
-                "obs_days_to_cover": None,
+                # no free source for these two observation signals:
                 "obs_lm_neg_share": None,
                 "obs_lm_neg_share_qoq_delta": None,
                 "obs_hiring_velocity_qoq": None,
@@ -87,6 +109,15 @@ class FreeBackend(Backend):
             shares = row.get("shares_outstanding")
             price = row.get("price")
             row["market_cap_usd"] = shares * price if shares and price else None
+
+            # short interest: raw continuous values per the observation layer
+            si_shares = short_interest.get(ticker)
+            median_volume = row.get("volume_3m_median_shares")
+            row["obs_si_pct_float"] = (
+                si_shares / shares if si_shares is not None and shares else None)
+            row["obs_days_to_cover"] = (
+                si_shares / median_volume
+                if si_shares is not None and median_volume else None)
 
             revenue = row.get("revenue_ttm_usd")
             row["is_pre_revenue_biotech"] = (
