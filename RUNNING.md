@@ -49,10 +49,17 @@ commit the `.ots` files plus the public artifacts.
 
 ```
 python -m tests.test_pipeline
+python -m tests.test_outcomes
 ```
 
-runs the whole pipeline on a synthetic universe with hand-computed expected
-results (filters, gates, ranks, tie-breaks, picks, schema).
+`test_pipeline` runs the whole pipeline on a synthetic universe with
+hand-computed expected results (filters, gates, ranks, tie-breaks, picks,
+schema). `test_outcomes` verifies the outcome module: score_name branch
+rules, then compute_outcomes end-to-end over the permanent synthetic
+fixture in `tests/fixtures/outcome_actions/` — all four §5 corporate-action
+branches (acquisition benchmark-roll, delist −100%, spinoff, halt), both
+horizons, hit/excess flow-through, and the §6 pre-registered statistics.
+Rerun both after touching screener code.
 
 ## Before the first Sharadar run (August)
 

@@ -197,7 +197,9 @@ def load_actions(run_dir: pathlib.Path) -> dict[str, dict]:
         return {}
     actions = {}
     for _, row in pd.read_csv(path).iterrows():
-        rec = row.to_dict()
+        # blank CSV cells arrive as NaN, which is truthy — normalize to None
+        # so an empty value_per_share doesn't hijack the override path
+        rec = {k: (None if pd.isna(v) else v) for k, v in row.to_dict().items()}
         if rec["action"] not in ACTION_BASIS:
             raise ValueError(f"unknown corporate action {rec['action']!r} "
                              f"(expected one of {sorted(ACTION_BASIS)})")

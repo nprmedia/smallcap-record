@@ -1,0 +1,5 @@
+figi,run_date,cik,ticker,sector,pick,pick_rank
+BBG000TEST001,2025-06-13,1000001,ACQ,Industrials,True,1
+BBG000TEST002,2025-06-13,1000002,DLST,Materials,True,2
+BBG000TEST003,2025-06-13,1000003,SPIN,Health Care,True,3
+BBG000TEST004,2025-06-13,1000004,HALT,Information Technology,True,4
